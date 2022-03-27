@@ -1,0 +1,277 @@
+
+{% extends 'layout/app.html.twig' %}
+
+{% block title %}PIDEV_PROJECT{% endblock %}
+{% block  stylesheets%}
+{% endblock %}
+ {% block breadcrumb %}
+     <div id="kt_toolbar_container" class="container-xxl d-flex flex-stack flex-wrap">
+         <!--begin::Page title-->
+         <div class="page-title d-flex flex-column me-3 ">
+             <!--begin::Title-->
+             <h1 class="d-flex text-white fw-bolder my-1 fs-3 float-start" style="float: left">BIENVENU CHEZ MICRO_CREDIT</h1>
+
+             <!--end::Title-->
+             <!--begin::Breadcrumb-->
+
+         </div>
+         <a href="{{ path('app_login') }}" class="d-flex text-white fw-bolder my-1 fs-3 float-end"  style="float: right">LOGIN / S'INSCRIRE</a>
+     </div>
+ {% endblock %}
+{% block body %}
+
+    <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
+    <!--begin::Post-->
+    <div class="content flex-row-fluid" id="kt_content">
+        <!--begin::Home card-->
+        <div class="card">
+            <!--begin::Body-->
+            <div class="card-body p-lg-20">
+                <!--begin::Section-->
+                <!--end::Section-->
+                <!--begin::Section-->
+                <div class="mb-17">
+                    <!--begin::Content-->
+                    <div class="d-flex flex-stack mb-5">
+                        <!--begin::Title-->
+                        <h3 class="text-black">Consulter nos produits</h3>
+                        <!--end::Title-->
+                        <!--begin::Link-->
+                        <!--end::Link-->
+                    </div>
+                    <!--end::Content-->
+                    <!--begin::Separator-->
+                    <div class="separator separator-dashed mb-9"></div>
+                    <!--end::Separator-->
+                    <!--begin::Row-->
+                    <div class="row g-10">
+                        <!--begin::Col-->
+                        <div class="col-md-4">
+                            <!--begin::Feature post-->
+                            <div class="card-xl-stretch me-md-6">
+                                <!--begin::Image-->
+                                <a class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-175px mb-5" style="data-fslightbox="lightbox-video-tutorials" href="https://www.youtube.com/embed/ptgwzvvAHy4">
+                                    <img src="{{ asset('assets/media/svg/misc/microcredit-voiture.jpg') }}" class="position-absolute top-50 start-50 translate-middle" alt="" />
+                                </a>
+                                <!--end::Image-->
+                                <!--begin::Body-->
+                                <div class="m-0">
+                                    <!--begin::Title-->
+                                    <a href="#" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">Le micro-crédit auto</a>
+                                    <!--end::Title-->
+                                    <!--begin::Text-->
+                                    <div class="fw-bold fs-5 text-gray-600 text-dark my-4">Il existe plusieurs aides financières pour l’achat d’une voiture. Parmi ces dernières, un tout nouveau dispositif vient de voir le jour : le microcrédit « véhicules propres ».</div>
+                                    <!--end::Text-->
+                                    <!--begin::Content-->
+                                    <div class="fs-6 fw-bolder">
+                                        <!--begin::Author-->
+                                        <!--end::Author-->
+                                        <!--begin::Date-->
+                                        <!--end::Date-->
+                                    </div>
+                                    <!--end::Content-->
+                                </div>
+                                <!--end::Body-->
+                            </div>
+                            <!--end::Feature post-->
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-md-4">
+                            <!--begin::Feature post-->
+                            <div class="card-xl-stretch mx-md-3">
+                                <!--begin::Image-->
+                                <a class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-175px mb-5" style="data-fslightbox="lightbox-video-tutorials" href="https://www.youtube.com/embed/UPNvy-2ZtQM">
+                                    <img src="{{ asset('assets/media/svg/misc/azer.jpg') }}"  style="width: 241px !important;" class="position-absolute top-50 start-50 translate-middle" alt="" />
+                                </a>
+                                <!--end::Image-->
+                                <!--begin::Body-->
+                                <div class="m-0">
+                                    <!--begin::Title-->
+                                    <a href="#" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">Le micro-crédit immobilier</a>
+                                    <!--end::Title-->
+                                    <!--begin::Text-->
+                                    <div class="fw-bold fs-5 text-gray-600 text-dark my-4">Le crédit immobilier est accordé à une personne qui présente des garanties quant à sa capacité à rembourser la somme prêtée. </div>
+                                    <!--end::Text-->
+                                    <!--begin::Content-->
+                                    <div class="fs-6 fw-bolder">
+                                        <!--begin::Author-->
+                                        <!--end::Author-->
+                                        <!--begin::Date-->
+
+                                        <!--end::Date-->
+                                    </div>
+                                    <!--end::Content-->
+                                </div>
+                                <!--end::Body-->
+                            </div>
+                            <!--end::Feature post-->
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-md-4">
+                            <!--begin::Feature post-->
+                            <div class="card-xl-stretch ms-md-6">
+                                <!--begin::Image-->
+                                <a class="d-block bgi-no-repeat bgi-size-cover bgi-position-center card-rounded position-relative min-h-175px mb-5" >
+                                    <img src="{{ asset('assets/media/svg/misc/005802ie85.jpg') }}" style="width: 241px !important;" class="position-absolute top-50 start-50 translate-middle" alt="" />
+                                </a>
+                                <!--end::Image-->
+                                <!--begin::Body-->
+                                <div class="m-0">
+                                    <!--begin::Title-->
+                                    <a href="#" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">Le micro-crédit personnel</a>
+                                    <!--end::Title-->
+                                    <!--begin::Text-->
+                                    <div class="fw-bold fs-5 text-gray-600 text-dark my-4">Le microcrédit personnel est un crédit destiné aux personnes exclues du système bancaire classique (faibles revenus ou situation professionnelle fragile.</div>
+                                    <!--end::Text-->
+                                    <!--begin::Content-->
+                                    <div class="fs-6 fw-bolder">
+                                        <!--begin::Author-->
+                                        <!--end::Author-->
+                                        <!--begin::Date-->
+                                        <!--end::Date-->
+                                    </div>
+                                    <!--end::Content-->
+                                </div>
+                                <!--end::Body-->
+                            </div>
+                            <!--end::Feature post-->
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Row-->
+                </div>
+                <!--end::Section-->
+                <!--begin::Section-->
+                <div class="mb-17">
+                    <!--begin::Content-->
+                    <div class="d-flex flex-stack mb-5">
+                        <!--begin::Title-->
+                        <h3 class="text-black">Nos service</h3>
+                        <!--end::Title-->
+                        <!--begin::Link-->
+                        <!--end::Link-->
+                    </div>
+                    <!--end::Content-->
+                    <!--begin::Separator-->
+                    <div class="separator separator-dashed mb-9"></div>
+                    <!--end::Separator-->
+                    <!--begin::Row-->
+                    <div class="row g-10">
+                        <!--begin::Col-->
+                        <div class="col-md-4">
+                            <!--begin::Hot sales post-->
+                            <div class="card-xl-stretch me-md-6">
+                                <!--begin::Overlay-->
+                                <a class="d-block overlay" data-fslightbox="lightbox-hot-sales" href="assets/media/stock/600x400/img-23.jpg">
+                                    <!--begin::Image-->
+                                    <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px" style="background-image:url('assets/media/stock/111.png')"></div>
+                                    <!--end::Image-->
+                                    <!--begin::Action-->
+                                    <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+                                        <i class="bi bi-eye-fill fs-2x text-white"></i>
+                                    </div>
+                                    <!--end::Action-->
+                                </a>
+                                <!--end::Overlay-->
+                                <!--begin::Body-->
+                                <div class="mt-5">
+                                    <!--begin::Title-->
+                                    <a style="    margin-left: 100px;" href="#" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">
+                                        Tous les prêts</a>
+                                    <!--end::Title-->
+                                    <!--begin::Text-->
+                                    <div class="fw-bold fs-5 text-gray-600 text-dark mt-3"></div>
+                                    <!--end::Text-->
+                                    <!--begin::Text-->
+                                    <!--end::Text-->
+                                </div>
+                                <!--end::Body-->
+                            </div>
+                            <!--end::Hot sales post-->
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-md-4">
+                            <!--begin::Hot sales post-->
+                            <div class="card-xl-stretch mx-md-3">
+                                <!--begin::Overlay-->
+                                <a class="d-block overlay" data-fslightbox="lightbox-hot-sales" href="assets/media/stock/600x600/img-14.jpg">
+                                    <!--begin::Image-->
+                                    <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px" style="background-image:url('assets/media/stock/121.png')"></div>
+                                    <!--end::Image-->
+                                    <!--begin::Action-->
+                                    <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+                                        <i class="bi bi-eye-fill fs-2x text-white"></i>
+                                    </div>
+                                    <!--end::Action-->
+                                </a>
+                                <!--end::Overlay-->
+                                <!--begin::Body-->
+                                <div class="mt-5">
+                                    <!--begin::Title-->
+                                    <a style="    margin-left: 100px;" href="#" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">Réponse facile et rapide</a>
+                                    <!--end::Title-->
+                                    <!--begin::Text-->
+                                    <!--end::Text-->
+                                    <!--begin::Text-->
+                                    <!--end::Text-->
+                                </div>
+                                <!--end::Body-->
+                            </div>
+                            <!--end::Hot sales post-->
+                        </div>
+                        <!--end::Col-->
+                        <!--begin::Col-->
+                        <div class="col-md-4">
+                            <!--begin::Hot sales post-->
+                            <div class="card-xl-stretch ms-md-6">
+                                <!--begin::Overlay-->
+                                <a class="d-block overlay" data-fslightbox="lightbox-hot-sales" href="assets/media/stock/600x400/img-71.jpg">
+                                    <!--begin::Image-->
+                                    <div class="overlay-wrapper bgi-no-repeat bgi-position-center bgi-size-cover card-rounded min-h-175px" style="background-image:url('assets/media/stock/767.png')"></div>
+                                    <!--end::Image-->
+                                    <!--begin::Action-->
+                                    <div class="overlay-layer card-rounded bg-dark bg-opacity-25">
+                                        <i class="bi bi-eye-fill fs-2x text-white"></i>
+                                    </div>
+                                    <!--end::Action-->
+                                </a>
+                                <!--end::Overlay-->
+                                <!--begin::Body-->
+                                <div class="mt-5">
+                                    <!--begin::Title-->
+                                    <a  style="    margin-left: 100px;" href="#" class="fs-4 text-dark fw-bolder text-hover-primary text-dark lh-base">Services financiers sécurisés</a>
+                                    <!--end::Title-->
+                                    <!--begin::Text-->
+                                    <!--end::Text-->
+                                    <!--begin::Text-->
+
+                                    <!--end::Text-->
+                                </div>
+                                <!--end::Body-->
+                            </div>
+                            <!--end::Hot sales post-->
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <!--end::Row-->
+                </div>
+                <!--end::Section-->
+                <!--begin::latest instagram-->
+                <!--end::latest instagram-->
+            </div>
+            <!--end::Body-->
+        </div>
+        <!--end::Home card-->
+    </div>
+    <!--end::Post-->
+</div>
+
+
+    </div>{% endblock %}
+{% block javascripts %}
+
+
+{% endblock %}

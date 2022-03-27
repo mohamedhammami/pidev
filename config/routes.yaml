@@ -1,0 +1,3 @@
+acceuil_page:
+  path: /
+  controller: App\Controller\HomeController::home1

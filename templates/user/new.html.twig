@@ -1,0 +1,150 @@
+{% extends 'layout/app.html.twig' %}
+
+{% block title %}New User{% endblock %}
+  {% block stylesheets %}
+<style>
+    #user_civility {
+        margin-top: 9px;
+
+    }
+    label[for=user_civility_0]
+    {
+        margin-right: 9px;
+        margin-left: 9px;
+    }
+    label[for=user_civility_1]
+    {
+        margin-right: 9px;
+        margin-left: 9px;
+    }
+</style>
+  {% endblock %}
+ {% block breadcrumb %}
+     <div id="kt_toolbar_container" class="container-xxl d-flex flex-stack flex-wrap">
+         <!--begin::Page title-->
+         <div class="page-title d-flex flex-column me-3">
+             <!--begin::Title-->
+             <h1 class="d-flex text-white fw-bolder my-1 fs-3">Inscription</h1>
+             <!--end::Title-->
+             <!--begin::Breadcrumb-->
+             <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                 <!--begin::Item-->
+                 <li class="breadcrumb-item text-white opacity-75">
+                     <a href="{{ path('home') }}" class="text-white text-hover-primary">Home</a>
+                 </li>
+                 <!--end::Item-->
+                 <!--begin::Item-->
+
+                 <li class="breadcrumb-item">
+                     <span class="bullet bg-white opacity-75 w-5px h-2px"></span>
+                 </li>
+                 <!--end::Item-->
+                 <!--begin::Item-->
+                 <li class="breadcrumb-item text-white opacity-75">Inscription</li>
+                 <!--end::Item-->
+             </ul>
+         </div>
+
+     </div>
+ {% endblock %}
+{% block body %}
+    <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
+        <div class="content flex-row-fluid" id="kt_content">
+            <div class="card">
+
+                <h5 class="fs-2hx text-dark mb-5" style="text-align: center!important;margin-top: 20px; text-transform: uppercase; float: left">
+                    Inscrivez-vous :
+                </h5>
+
+                <div class="card-header border-0 pt-6">
+                    <div class="card-title">
+
+                    </div>
+                </div>
+
+                <div class="card-body pt-0" id="webbinaire">
+                    {{ form_start(form) }}
+                    <div class="row">
+                        <div class="col-lg-6 ">
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom: 10px !important;">Nom<span class="text-danger">*</span></label>
+                                {{ form_widget(form.lastName) }}
+                                <div class="form-error" style="color: red">
+                                    {{ form_errors(form.lastName) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 ">
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom: 10px !important;">Prenom<span class="text-danger">*</span></label>
+                                {{ form_widget(form.firstName) }}
+                                <div class="form-error" style="color: red">
+                                    {{ form_errors(form.firstName) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 ">
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom: 10px !important;">Email<span class="text-danger">*</span></label>
+                                {{ form_widget(form.email) }}
+                                <div class="form-error" style="color: red">
+                                    {{ form_errors(form.email) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 ">
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom: 10px !important;">Mot de passe<span class="text-danger">*</span></label>
+                                {{ form_widget(form.password) }}
+                                <div class="form-error" style="color: red">
+                                    {{ form_errors(form.password) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 "  style="margin-top: 15px!important;">
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom: 10px !important;">Civilité<span class="text-danger">*</span></label>
+                                {{ form_widget(form.civility) }}
+                                <div class="form-error" style="color: red">
+                                    {{ form_errors(form.civility) }}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 "  style="margin-top: 15px!important;">
+                            <label class="form-label" style="margin-bottom: 10px !important;">Type du compte<span class="text-danger">*</span></label>
+
+                            <div class="mb-3">
+                                <label>
+                                    <input type="radio" class="btn-check" name="type" value="1" checked="checked" />
+                                    <span class="btn btn-sm btn-color-muted btn-active btn-active-primary">Super Admin</span>
+                                </label>
+                                <!--end::Option-->
+                                <!--begin::Option-->
+                                <label>
+                                    <input type="radio" class="btn-check" name="type" value="2" />
+                                    <span class="btn btn-sm btn-color-muted btn-active btn-active-primary px-4">Client</span>
+                                </label>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                    <div class="col-lg-12">
+                        <div style="float: right" >
+                            <button type="submit" class="btn btn btn-primary" style="margin-top: 5px"> Enregistrer</button>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

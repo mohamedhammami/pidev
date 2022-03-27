@@ -1,0 +1,95 @@
+{% extends 'layout/app.html.twig' %}
+
+{% block title %}New User{% endblock %}
+ {% block breadcrumb %}
+     <div id="kt_toolbar_container" class="container-xxl d-flex flex-stack flex-wrap">
+         <!--begin::Page title-->
+         <div class="page-title d-flex flex-column me-3">
+             <!--begin::Title-->
+             <h1 class="d-flex text-white fw-bolder my-1 fs-3">Espace crédit</h1>
+             <!--end::Title-->
+             <!--begin::Breadcrumb-->
+             <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                 <!--begin::Item-->
+                 <li class="breadcrumb-item text-white opacity-75">
+                     <a href="{{ path('home') }}" class="text-white text-hover-primary">Home</a>
+                 </li>
+                 <!--end::Item-->
+                 <!--begin::Item-->
+
+                 <li class="breadcrumb-item">
+                     <span class="bullet bg-white opacity-75 w-5px h-2px"></span>
+                 </li>
+                 <!--end::Item-->
+                 <!--begin::Item-->
+                 <li class="breadcrumb-item text-white opacity-75">Demande de crédit</li>
+                 <!--end::Item-->
+             </ul>
+         </div>
+
+     </div>
+ {% endblock %}
+{% block body %}
+    <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
+        <div class="content flex-row-fluid" id="kt_content">
+            <div class="card">
+
+                <h5 class="fs-2hx text-dark mb-5" style="text-align: center!important;margin-top: 20px; text-transform: uppercase; float: left">
+                    Formulaire de demande :
+                </h5>
+
+                <div class="card-header border-0 pt-6">
+                    <div class="card-title">
+
+                    </div>
+                </div>
+
+                <div class="card-body pt-0" id="webbinaire">
+                    {{ form_start(form) }}
+                    <div class="row">
+                        <div class="col-lg-12 ">
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom: 10px !important;">Motif<span class="text-danger">*</span></label>
+                                {{ form_widget(form.subject) }}
+                                <div class="form-error" style="color: red">
+                                    {{ form_errors(form.subject) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 "  style="margin-top: 15px!important;">
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom: 10px !important;">Montant souhaité<span class="text-danger">*</span></label>
+                                {{ form_widget(form.amount) }}
+                                <div class="form-error" style="color: red">
+                                    {{ form_errors(form.amount) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 "  style="margin-top: 15px!important;">
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom: 10px !important;">Durée<span class="text-danger">*</span></label>
+                                {{ form_widget(form.duration) }}
+                                <div class="form-error" style="color: red">
+                                    {{ form_errors(form.duration) }}
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-12">
+                        <div style="float: right" >
+                            <button type="submit" class="btn btn btn-primary" style="margin-top: 5px"> Enregistrer</button>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

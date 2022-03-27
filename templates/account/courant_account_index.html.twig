@@ -1,0 +1,157 @@
+{% extends 'layout/app.html.twig' %}
+
+{% block title %}PIDEV_PROJECT{% endblock %}
+ {% block breadcrumb %}
+     <div id="kt_toolbar_container" class="container-xxl d-flex flex-stack flex-wrap">
+         <!--begin::Page title-->
+         <div class="page-title d-flex flex-column me-3">
+             <!--begin::Title-->
+             <h1 class="d-flex text-white fw-bolder my-1 fs-3">Espace compte</h1>
+             <!--end::Title-->
+             <!--begin::Breadcrumb-->
+             <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                 <!--begin::Item-->
+                 <li class="breadcrumb-item text-white opacity-75">
+                     <a href="{{ path('home') }}" class="text-white text-hover-primary">Home</a>
+                 </li>
+                 <!--end::Item-->
+                 <!--begin::Item-->
+
+                 <li class="breadcrumb-item">
+                     <span class="bullet bg-white opacity-75 w-5px h-2px"></span>
+                 </li>
+                 <!--end::Item-->
+                 <!--begin::Item-->
+                 <li class="breadcrumb-item text-white opacity-75">Compte courant</li>
+                 <!--end::Item-->
+             </ul>
+         </div>
+
+     </div>
+ {% endblock %}
+{% block body %}
+    <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
+        <div class="content flex-row-fluid" id="kt_content">
+            <div class="card">
+                <div class="text-center mb-12" style="margin: 15px !important;">
+                    <button  data-bs-toggle="modal" data-bs-target="#kt_modal_show_user" type="button" class="btn btn-primary float-end" style=" width: 276px;" >
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                        <span class="svg-icon svg-icon-2">
+                               <i class="fa fa-exchange-alt"></i>
+                            </span>
+                        <!--end::Svg Icon-->Virement
+                    </button>
+                    <h5 class="fs-2hx text-dark" style="text-align: center!important;margin-top: 20px; text-transform: uppercase">
+                        Informations du compte :  {% if account != null %}{{ account.id}} {% endif %}
+                    </h5>
+
+                </div>
+
+                <div class="card-body pt-0" id="webbinaire">
+
+                    <div class="row">
+                        <div class="col-lg-12 ">
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom: 10px !important;font-weight: bold;">Montant : <span class="text-danger"></span></label>
+                                {% if account != null %}{{ account.Balance?account.Balance:'' }}{% endif %}
+                            </div>
+                        </div>
+                        <div class="col-lg-12 "  style="margin-top: 15px!important;">
+                            <div class="mb-3">
+                                <label class="form-label" style="font-weight: bold;margin-bottom: 10px !important;">RIB : </label>
+                                {% if account != null %}   {{ account.rib? account.rib:'' }}{% endif %}
+                            </div>
+                        </div>
+                        <div class="col-lg-12 "  style="margin-top: 15px!important;">
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom: 10px !important;font-weight: bold;">Date de création : </label>
+                                {% if account != null %} {{ account.openingDate? account.openingDate|date('d-m-Y') }}{% endif %}
+                            </div>
+                        </div>
+                        <div class="col-lg-12 "  style="margin-top: 15px!important;">
+                            <div class="mb-3">
+                                <label class="form-label" style="font-weight: bold;font-weight: bold;margin-bottom: 10px !important;">Type : </label>
+                                {% if account != null %}
+                                {% if constant('CEPARGNE', account) == account.type %}
+                                    <span >{{ constant('COMPTE', account) [account.type] }}</span>
+                                {% endif %}
+                                {% if constant('CCOURANT', account) == account.type %}
+                                    <span >{{ constant('COMPTE', account) [account.type] }}</span>
+                                {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="kt_modal_show_user" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog modal-dialog-centered mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header" id="kt_modal_add_user_header">
+                    <!--begin::Modal title-->
+                    <h2 class="fw-bolder" style="    margin-left: 193px;
+">Nouveau virement</h2>
+                    <!--end::Modal title-->
+                    <!--begin::Close-->
+                    <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                                        </svg>
+                                    </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                    <!--end::Close-->
+                </div>
+
+                <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                    {% if account != null %}
+                    <form action="{{ path('app_validate_transaction', {'id' :account.id }) }}" method="post" >
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom: 10px !important;font-weight: bold;">RIB Bénificiaire : </label>
+                                <input name="ribBenif" type="text" class="form-control" required >
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom: 10px !important;font-weight: bold;">RIB: </label>
+                                <input name="rib" type="text" class="form-control" required >                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom: 10px !important;font-weight: bold;">Montant: </label>
+                                <input name="amount" type="text" class="form-control" required >
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div style="float: right" >
+                                <button type="submit" class="btn btn btn-primary" style="margin-top: 5px"> Valider</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+                </form>
+                    {% endif %}
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div
+{% endblock %}

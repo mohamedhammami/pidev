@@ -1,0 +1,108 @@
+{% extends 'layout/app.html.twig' %}
+
+{% block title %}PIDEV_PROJECT{% endblock %}
+ {% block breadcrumb %}
+     <div id="kt_toolbar_container" class="container-xxl d-flex flex-stack flex-wrap">
+         <!--begin::Page title-->
+         <div class="page-title d-flex flex-column me-3">
+             <!--begin::Title-->
+             <h1 class="d-flex text-white fw-bolder my-1 fs-3">Espace compte</h1>
+             <!--end::Title-->
+             <!--begin::Breadcrumb-->
+             <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                 <!--begin::Item-->
+                 <li class="breadcrumb-item text-white opacity-75">
+                     <a href="{{ path('home') }}" class="text-white text-hover-primary">Home</a>
+                 </li>
+                 <!--end::Item-->
+                 <!--begin::Item-->
+
+                 <li class="breadcrumb-item">
+                     <span class="bullet bg-white opacity-75 w-5px h-2px"></span>
+                 </li>
+                 <!--end::Item-->
+                 <!--begin::Item-->
+                 <li class="breadcrumb-item text-white opacity-75">Nouveau compte</li>
+                 <!--end::Item-->
+             </ul>
+         </div>
+
+     </div>
+ {% endblock %}
+{% block body %}
+    <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
+        <div class="content flex-row-fluid" id="kt_content">
+            <div class="card">
+
+                <h5 class="fs-2hx text-dark mb-5" style="text-align: center!important;margin-top: 20px; text-transform: uppercase; float: left">
+                    Formulaire de création :
+                </h5>
+
+                <div class="card-header border-0 pt-6">
+                    <div class="card-title">
+
+                    </div>
+                </div>
+
+                <div class="card-body pt-0" id="webbinaire">
+                    {{ form_start(form) }}
+                    <div class="row">
+                        <div class="col-lg-12 ">
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom: 10px !important;">Montant<span class="text-danger"></span></label>
+                                {{ form_widget(form.Balance) }}
+                                <div class="form-error" style="color: red">
+                                    {{ form_errors(form.Balance) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 "  style="margin-top: 15px!important;">
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom: 10px !important;">RIB<span class="text-danger">*</span></label>
+                                {{ form_widget(form.rib) }}
+                                <div class="form-error" style="color: red">
+                                    {{ form_errors(form.rib) }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12 "  style="margin-top: 15px!important;">
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom: 10px !important;">Type du compte<span class="text-danger">*</span></label>
+                                {{ form_widget(form.type) }}
+                                <div class="form-error" style="color: red">
+                                    {{ form_errors(form.type) }}
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="col-lg-12">
+                        <div style="float: right" >
+                            <button id="btnn" type="submit" class="btn btn btn-primary" style="margin-top: 5px"> Ajouter</button>
+                        </div>
+                    </div>
+                    {{ form_end(form) }}
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $('#account_Balance').on('change', function () {
+            var n = $(this).attr('type');
+            console.log(n);
+            if(n == "text") {
+                alert('Merci de mettre une valeur correcte');
+                //document.querySelector('button').disabled = true;
+        }
+            else {
+                document.querySelector('button').disabled = false;
+
+            }
+        });
+    </script>
+{% endblock %}

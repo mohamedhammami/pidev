@@ -1,0 +1,83 @@
+
+<style>
+    #user_civility {
+        margin-top: 9px;
+
+    }
+    label[for=user_civility_0]
+    {
+        margin-right: 9px;
+        margin-left: 9px;
+    }
+    label[for=user_civility_1]
+    {
+        margin-right: 9px;
+        margin-left: 9px;
+    }
+</style>
+
+<div class="content flex-row-fluid" id="kt_content">
+    <div class="card">
+
+        <h5 class="fs-2hx text-dark mb-5" style="text-align: center!important;margin-top: 20px; text-transform: uppercase; float: left">
+            Modifier l'utilisateur:
+        </h5>
+
+        <div class="card-header border-0 pt-6">
+            <div class="card-title">
+
+            </div>
+        </div>
+
+        <div class="card-body pt-0" id="webbinaire">
+            {{ form_start(form, {'action': path('app_user_edit',{'id': user.id})}) }}
+            <div class="row">
+                <div class="col-lg-6 ">
+                    <div class="mb-3">
+                        <label class="form-label" style="margin-bottom: 10px !important;">Nom<span class="text-danger">*</span></label>
+                        {{ form_widget(form.lastName) }}
+                        <div class="form-error" style="color: red">
+                            {{ form_errors(form.lastName) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 ">
+                    <div class="mb-3">
+                        <label class="form-label" style="margin-bottom: 10px !important;">Prenom<span class="text-danger">*</span></label>
+                        {{ form_widget(form.firstName) }}
+                        <div class="form-error" style="color: red">
+                            {{ form_errors(form.firstName) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 ">
+                    <div class="mb-3">
+                        <label class="form-label" style="margin-bottom: 10px !important;">Email<span class="text-danger">*</span></label>
+                        {{ form_widget(form.email) }}
+                        <div class="form-error" style="color: red">
+                            {{ form_errors(form.email) }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 "  style="margin-top: 15px!important;">
+                    <div class="mb-3">
+                        <label class="form-label" style="margin-bottom: 10px !important;">Civilité<span class="text-danger">*</span></label>
+                        {{ form_widget(form.civility) }}
+                        <div class="form-error" style="color: red">
+                            {{ form_errors(form.civility) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div style="float: right" >
+                    <button type="submit" class="btn btn btn-primary" style="margin-top: 5px"> Enregistrer</button>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+</div>

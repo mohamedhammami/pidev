@@ -1,0 +1,154 @@
+{% extends 'layout/app.html.twig' %}
+
+{% block title %}Intranet{% endblock %}
+{% block  stylesheets%}
+    <style>
+        .truncate {
+            max-width:100px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+    </style>
+
+{% endblock %}
+ {% block breadcrumb %}
+     <div id="kt_toolbar_container" class="container-xxl d-flex flex-stack flex-wrap">
+         <!--begin::Page title-->
+         <div class="page-title d-flex flex-column me-3">
+             <!--begin::Title-->
+             <h1 class="d-flex text-white fw-bolder my-1 fs-3">Liste des utlisateurs de l'application</h1>
+             <!--end::Title-->
+             <!--begin::Breadcrumb-->
+             <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                 <!--begin::Item-->
+                 <li class="breadcrumb-item text-white opacity-75">
+                     <a href="{{ path('home') }}" class="text-white text-hover-primary">Home</a>
+                 </li>
+                 <!--end::Item-->
+                 <!--begin::Item-->
+
+                 <li class="breadcrumb-item">
+                     <span class="bullet bg-white opacity-75 w-5px h-2px"></span>
+                 </li>
+                 <!--end::Item-->
+                 <!--begin::Item-->
+                 <li class="breadcrumb-item text-white opacity-75">Liste des utilisateurs</li>
+                 <!--end::Item-->
+             </ul>
+         </div>
+
+     </div>
+ {% endblock %}
+{% block body %}
+    <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
+        <div class="content flex-row-fluid" id="kt_content">
+            <div class="card">
+                <div class="text-center mb-12" style="margin: 15px !important;">
+                    <button onclick="window.location.href='{{ path('app_user_new') }}'" type="button" class="btn btn-primary" style="float: right" >
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                        <span class="svg-icon svg-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black"></rect>
+                                    <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black"></rect>
+                                </svg>
+                            </span>
+                        <!--end::Svg Icon-->Ajouter
+                    </button>
+                    <h5 class="fs-2hx text-dark" style="text-align: center!important;margin-top: 20px; text-transform: uppercase">Liste des utilisateurs :</h5>
+
+                </div>
+
+                <div class="card-body pt-0" id="users">
+                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_table_users">
+                        <thead>
+                        <tr class="text-start text-dark fw-bolder fs-7 text-uppercase gs-0">
+                            <th class="">Nom d'utilisateur</th>
+                            <th class="">Email</th>
+                            <th >Statut</th>
+                            <th class="">Role</th>
+                            <th class="">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody class="text-gray-600 fw-bold">
+                        {% for user in users %}
+                            <tr>
+                                <td>{% if constant('CIVILITY_MR', user) == user.civility %}
+                                        {{ constant('CIVILITY', user) [user.civility] }}
+                                    {% endif %}
+                                    {% if constant('CIVILITY_MME', user) == user.civility %}
+                                        {{ constant('CIVILITY', user) [user.civility] }}
+                                    {% endif %} {{ user.firstName?user.firstName:'' }} {{ user.lastName?user.lastName:'' }}</td>
+                                <td>{{ user.email? user.email : '' }}</td>
+                                <td> {{ user.isActive? 'Active' : 'Desactivé' }}</td>
+                                <td>{{ user.roles? user.roles[0] : '' }}</td>
+                                <td>
+                                    <button title="Desactiver" class="btn btn-outline-danger" onclick="window.location.href='{{ path('app_user_show', {'id': user.id}) }}'"><i class="fa fa-archive bt-danger"></i></button>
+                                    <button title="Activer" class="btn btn-outline-primary" onclick="window.location.href='{{ path('app_user_active', {'id': user.id}) }}'"><i class="fa fa-trash-restore bt-primary"></i></button>
+                                    <button title="Modifier" class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#kt_modal_show_user" href="{{ path('app_user_edit', {'id': user.id}) }}"><i class="fa fa-user-edit btn-success"></i></button>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="kt_modal_show_user" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal dialog-->
+            <div class="modal-dialog modal-dialog-centered mw-650px">
+                <!--begin::Modal content-->
+                <div class="modal-content">
+                    <!--begin::Modal header-->
+                    <div class="modal-header" id="kt_modal_add_user_header">
+                        <!--begin::Modal title-->
+                        <h2 class="fw-bolder">Utlisateur</h2>
+                        <!--end::Modal title-->
+                        <!--begin::Close-->
+                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                            <span class="svg-icon svg-icon-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                                        </svg>
+                                    </span>
+                            <!--end::Svg Icon-->
+                        </div>
+                        <!--end::Close-->
+                    </div>
+
+                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+
+                    </div>
+                    <!--end::Modal body-->
+                </div>
+                <!--end::Modal content-->
+            </div>
+            <!--end::Modal dialog-->
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="showPDFModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+    <!--begin::Modal - Add task-->
+
+    <!--end::Modal - Add task-->
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+
+            $("#kt_modal_show_user").on("show.bs.modal", function (e) {
+
+                var link = $(e.relatedTarget);
+                var path = $(this).find(".modal-content").load(link.attr('href'));
+            });
+        });
+    </script>
+{% endblock %}

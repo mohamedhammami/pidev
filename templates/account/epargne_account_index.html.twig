@@ -1,0 +1,88 @@
+{% extends 'layout/app.html.twig' %}
+
+{% block title %}PIDEV_PROJECT{% endblock %}
+ {% block breadcrumb %}
+     <div id="kt_toolbar_container" class="container-xxl d-flex flex-stack flex-wrap">
+         <!--begin::Page title-->
+         <div class="page-title d-flex flex-column me-3">
+             <!--begin::Title-->
+             <h1 class="d-flex text-white fw-bolder my-1 fs-3">Espace compte</h1>
+             <!--end::Title-->
+             <!--begin::Breadcrumb-->
+             <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                 <!--begin::Item-->
+                 <li class="breadcrumb-item text-white opacity-75">
+                     <a href="{{ path('home') }}" class="text-white text-hover-primary">Home</a>
+                 </li>
+                 <!--end::Item-->
+                 <!--begin::Item-->
+
+                 <li class="breadcrumb-item">
+                     <span class="bullet bg-white opacity-75 w-5px h-2px"></span>
+                 </li>
+                 <!--end::Item-->
+                 <!--begin::Item-->
+                 <li class="breadcrumb-item text-white opacity-75">Compte epargne</li>
+                 <!--end::Item-->
+             </ul>
+         </div>
+
+     </div>
+ {% endblock %}
+{% block body %}
+    <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
+        <div class="content flex-row-fluid" id="kt_content">
+            <div class="card">
+                <div class="text-center mb-12" style="margin: 15px !important;">
+
+                    <h5 class="fs-2hx text-dark" style="text-align: center!important;margin-top: 20px; text-transform: uppercase">
+                        Informations du compte :
+                    </h5>
+
+                </div>
+
+                <div class="card-body pt-0" id="webbinaire">
+
+                    <div class="row">
+                        <div class="col-lg-12 ">
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom: 10px !important;font-weight: bold;">Montant : <span class="text-danger"></span></label>
+                                {% if account != null %} {{ account.Balance?account.Balance:'' }} {% endif %}
+                            </div>
+                        </div>
+                        <div class="col-lg-12 "  style="margin-top: 15px!important;">
+                            <div class="mb-3">
+                                <label class="form-label" style="font-weight: bold;margin-bottom: 10px !important;">RIB : </label>
+                                {% if account != null %} {{ account.rib? account.rib:'' }}{% endif %}
+                            </div>
+                        </div>
+                        <div class="col-lg-12 "  style="margin-top: 15px!important;">
+                            <div class="mb-3">
+                                <label class="form-label" style="margin-bottom: 10px !important;font-weight: bold;">Date de création : </label>
+                                {% if account != null %} {{ account.openingDate? account.openingDate|date('d-m-Y') }}{% endif %}
+                            </div>
+                        </div>
+                        <div class="col-lg-12 "  style="margin-top: 15px!important;">
+                            <div class="mb-3">
+                                <label class="form-label" style="font-weight: bold;font-weight: bold;margin-bottom: 10px !important;">Type : </label>
+                                {% if account != null %}
+                                {% if constant('CEPARGNE', account) == account.type %}
+                                    <span >{{ constant('COMPTE', account) [account.type] }}</span>
+                                {% endif %}
+                                {% if constant('CCOURANT', account) == account.type %}
+                                    <span >{{ constant('COMPTE', account) [account.type] }}</span>
+                                {% endif %}
+                                {% endif %}
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,121 @@
+{% extends 'layout/app.html.twig' %}
+
+{% block title %}Intranet{% endblock %}
+{% block  stylesheets%}
+    <link href="http://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+    <style>
+
+    </style>
+
+{% endblock %}
+ {% block breadcrumb %}
+     <div id="kt_toolbar_container" class="container-xxl d-flex flex-stack flex-wrap">
+         <!--begin::Page title-->
+         <div class="page-title d-flex flex-column me-3">
+             <!--begin::Title-->
+             <h1 class="d-flex text-white fw-bolder my-1 fs-3">Mes demandes des crédits</h1>
+             <!--end::Title-->
+             <!--begin::Breadcrumb-->
+             <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                 <!--begin::Item-->
+                 <li class="breadcrumb-item text-white opacity-75">
+                     <a href="{{ path('home') }}" class="text-white text-hover-primary">Home</a>
+                 </li>
+                 <!--end::Item-->
+                 <!--begin::Item-->
+
+                 <li class="breadcrumb-item">
+                     <span class="bullet bg-white opacity-75 w-5px h-2px"></span>
+                 </li>
+                 <!--end::Item-->
+                 <!--begin::Item-->
+                 <li class="breadcrumb-item text-white opacity-75">Liste des mes demandes</li>
+                 <!--end::Item-->
+             </ul>
+         </div>
+
+     </div>
+ {% endblock %}
+
+{% block body %}
+
+    <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
+        <div class="content flex-row-fluid" id="kt_content">
+            <div class="card">
+
+                <h5 class="fs-2hx text-dark mb-5" style="text-align: center!important;margin-top: 20px; text-transform: uppercase">Liste des mes demandes :</h5>
+
+                <div class="card-body pt-0 mt-10" id="webbinaire">
+
+                    <table class="table table-responsive align-middle table-row-dashed fs-6 gy-5" id="kt_subscriptions_table">
+                        <thead>
+                        <tr class="text-start text-dark fw-bolder fs-7 text-uppercase gs-0">
+                            <th class="min-w-125px">Motif de crédit</th>
+                            <th class="min-w-125px">Montant</th>
+                            <th class="min-w-125px">Date d'envoie</th>
+                            <th class="min-w-125px">Durée</th>
+                            <th class="min-w-125px">Statut</th>
+                            <th class="text-end min-w-70px">Tranches</th>
+                        </tr>
+                        </thead>
+
+                        <tbody class="text-gray-600 fw-bold">
+                        {% for loan in loans %}
+                            <tr>
+
+                                <td>
+                                    <a  class="text-gray-800 text-hover-primary mb-1">{{ loan.subject?loan.subject:'' }}</a>
+                                </td>
+                                <td>
+                                    <div class="badge badge badge-light">
+                                        {{ loan.amount?loan.amount:'' }} DT
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <div class="badge badge badge-light">
+                                        {{ loan.dateOfSend?loan.dateOfSend|date('d-m-Y'):'' }}
+                                    </div>
+                                </td>
+
+                                <td>{{ loan.duration?loan.duration:'' }}</td>
+                                <td>{% if constant('STATUS_EN_COURS', loan) == loan.status %}
+                                        <span class="badge-info">{{ constant('STATUS', loan) [loan.status] }}</span>
+                                    {% endif %}
+                                    {% if constant('STATUS_ACCEPT', loan) == loan.status %}
+                                        <span class="badge-success">{{ constant('STATUS', loan) [loan.status] }}</span>
+                                    {% endif %}
+                                    {% if constant('STATUS_REFUED', loan) == loan.status %}
+                                        <span class="badge-danger">{{ constant('STATUS', loan) [loan.status] }}</span>
+                                    {% endif %}
+                                </td>
+
+                                <td class="text-end">
+                                    {% if loan.tranches|length > 0 %}
+                                        <button class="btn btn-outline-success" onclick="window.location.href='{{ path('show_tranche_loan', {'id':loan.id}) }}'">Visualiser</button>
+                                    {% else %}
+                                        <p>vous n'avez aucune tranche a payer</p>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+
+    <script>
+
+        $(document).ready( function () {
+            $('#kt_subscriptions_table').DataTable({
+                "paging" :false,
+                "info"   :false,
+                "filter" : false,
+            });
+        } );
+    </script>
+{% endblock %}

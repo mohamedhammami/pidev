@@ -1,0 +1,105 @@
+{% extends 'layout/app.html.twig' %}
+
+{% block title %}PIDEV_PROJECT{% endblock %}
+{% block  stylesheets%}
+{% endblock %}
+ {% block breadcrumb %}
+     <div id="kt_toolbar_container" class="container-xxl d-flex flex-stack flex-wrap">
+         <!--begin::Page title-->
+         <div class="page-title d-flex flex-column me-3">
+             <!--begin::Title-->
+             <h1 class="d-flex text-white fw-bolder my-1 fs-3">Page d'accueil</h1>
+             <!--end::Title-->
+             <!--begin::Breadcrumb-->
+             <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                 <!--begin::Item-->
+                 <li class="breadcrumb-item text-white opacity-75">
+                     <a href="{{ path('home') }}" class="text-white text-hover-primary">Home</a>
+                 </li>
+                 <!--end::Item-->
+                 <!--begin::Item-->
+
+                 <li class="breadcrumb-item">
+                     <span class="bullet bg-white opacity-75 w-5px h-2px"></span>
+                 </li>
+                 <!--end::Item-->
+                 <!--begin::Item-->
+                 <li class="breadcrumb-item text-white opacity-75">Page d'acceuil</li>
+                 <!--end::Item-->
+             </ul>
+         </div>
+
+     </div>
+ {% endblock %}
+{% block body %}
+    <div class="row g-5 g-xl-8">
+
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+    <div class="col-xl-4" style="    margin-top: 300px;">
+
+        <div class="card card-xl-stretch mb-xl-3 " >
+
+            <div class="card-header border-0 py-5 h-150px" style="background-color: #65cd78">
+                <a style=" margin-left: 55px;padding-top:42px; text-transform: uppercase;" href="#" class="text-white text-hover-primary fw-bolder fs-2" >Crédits Acceptés : <span style="margin-left: 15px">{% if  totalaccepted != null%} {{ totalaccepted|length }}{% else%} 0 {% endif %}</span>  </a>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xl-4" style="    margin-top: 300px;">
+
+        <div class="card card-xl-stretch mb-xl-3 " >
+
+            <div class="card-header border-0 py-5 h-150px" style="background-color: #d95a5f">
+                <a style="    margin-left: 55px;padding-top:42px; text-transform: uppercase;" href="#" class="text-white text-hover-primary fw-bolder fs-2" >Crédits Refusés : <span style="margin-left: 15px">{% if  totalrefused != null%} {{ totalrefused|length }} {% else %} 0{% endif %}</span>  </a>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-xl-4" style="    margin-top: 300px;">
+
+        <div class="card card-xl-stretch mb-xl-3 " >
+
+            <div class="card-header border-0 py-5 h-150px" style="background-color: #5ab5d9">
+                <a style="  white-space: nowrap;  margin-left: 43px;padding-top:42px; text-transform: uppercase;" href="#" class="text-white text-hover-primary fw-bolder fs-2" >Nombres des utlisateurs : <span style="margin-left: 15px">{% if  totalUser != null%} {{ totalUser|length }} {% else %} 0{% endif %}</span>  </a>
+            </div>
+
+        </div>
+    </div>
+    {% else %}
+        <div class="col-xl-4" style="    margin-top: 300px;">
+
+            <div class="card card-xl-stretch mb-xl-3 " >
+
+                <div class="card-header border-0 py-5 h-150px" style="background-color: #86d95a">
+                    <a style="    margin-left: 55px;padding-top:42px; text-transform: uppercase;" href="#" class="text-white text-hover-primary fw-bolder fs-2" >Crédits Acceptés : <span style="margin-left: 15px">{% if  accuser != null%} {{ accuser|length }} {% else %} 0{% endif %}</span>  </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xl-4" style="    margin-top: 300px;">
+
+            <div class="card card-xl-stretch mb-xl-3 " >
+
+                <div class="card-header border-0 py-5 h-150px" style="background-color: #5ab5d9">
+                    <a style="  white-space: nowrap;  margin-left: 43px;padding-top:42px; text-transform: uppercase;" href="#" class="text-white text-hover-primary fw-bolder fs-2" >Solde (compte courant) : <span style="margin-left: 15px">{% if amount != null %}{{ amount.Balance?amount.Balance:'' }}{% else%}0 {% endif%} </span>  </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-xl-4" style="    margin-top: 300px;">
+
+            <div class="card card-xl-stretch mb-xl-3 " >
+
+                <div class="card-header border-0 py-5 h-150px" style="background-color: #d9735a">
+                    <a style="  white-space: nowrap;  margin-left: 43px;padding-top:42px; text-transform: uppercase;" href="#" class="text-white text-hover-primary fw-bolder fs-2" >Tranche : <span style="margin-left: 15px">2 </span>  </a>
+                </div>
+
+            </div>
+        </div>
+    {% endif %}
+
+    </div>{% endblock %}
+{% block javascripts %}
+
+
+{% endblock %}

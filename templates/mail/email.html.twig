@@ -1,0 +1,17 @@
+{% extends 'mail/base.html.twig' %}
+{% block body %}
+    <tr border="1" style="border-color: lightgray;">
+        <td align="left" style="font-size:0px;  padding:10px 25px;word-break:break-word; border-bottom: 1px solid lightgray; ">
+            <div class="inter" style="font-family:Lato, Helvetica, Arial, sans-serif;  font-size:18px;text-align:left;color:#000000;">
+                <p>Félicitation {% if constant('CIVILITY_MR', user) == user.civility %}
+                        {{ constant('CIVILITY', user) [user.civility] }}
+                    {% endif %}
+                    {% if constant('CIVILITY_MME', user) == user.civility %}
+                        {{ constant('CIVILITY', user) [user.civility] }}
+                    {% endif %} {{ user.lastName?user.lastName:'' }} {{ user.firstName?user.firstName:'' }}, votre compte a été créé avec succès <br>
+                   Votre compte sera fonctionnelle dans 24 heures
+                </p>
+            </div>
+        </td>
+    </tr>
+{% endblock %}

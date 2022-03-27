@@ -1,0 +1,41 @@
+
+<style>
+
+</style>
+
+<div class="content flex-row-fluid" id="kt_content">
+    <div class="card">
+
+        <h5 class="fs-2hx text-dark mb-5" style="text-align: center!important;margin-top: 20px; text-transform: uppercase; float: left">
+            Créer un nouveau message:
+        </h5>
+
+        <div class="card-header border-0 pt-6">
+            <div class="card-title">
+
+            </div>
+        </div>
+
+        <div class="card-body pt-0" id="webbinaire">
+            {{ form_start(form, {'action': path('message_new',{'id': sender})}) }}
+            <div class="row">
+                <div class="col-lg-12 ">
+                    <div class="">
+                        <label class="form-label" style="margin-bottom: 10px !important;">Message<span class="text-danger">*</span></label> <br>
+                        {{ form_widget(form.content) }}
+                        <div class="form-error" style="color: red">
+                            {{ form_errors(form.content) }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12">
+                <div style="float: right" >
+                    <button type="submit" class="btn btn btn-primary" style="margin-top: 5px"> Envoyer</button>
+                </div>
+            </div>
+            {{ form_end(form) }}
+        </div>
+
+    </div>
+</div>

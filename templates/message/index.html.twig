@@ -1,0 +1,221 @@
+{% extends 'layout/app.html.twig' %}
+
+{% block title %}Intranet{% endblock %}
+{% block  stylesheets%}
+    <style>
+        .container {
+            border: 2px solid #dedede;
+            background-color: #f1f1f1;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        /* Darker chat container */
+        .darker {
+            border-color: #ccc;
+            background-color: #ddd;
+        }
+
+        /* Clear floats */
+        .container::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Style images */
+        .container img {
+            float: left;
+            max-width: 60px;
+            width: 100%;
+            margin-right: 20px;
+            border-radius: 50%;
+        }
+
+        /* Style the right image */
+        .container img.right {
+            float: right;
+            margin-left: 20px;
+            margin-right:0;
+        }
+
+        /* Style time text */
+        .time-right {
+            float: right;
+            color: #aaa;
+        }
+
+        /* Style time text */
+        .time-left {
+            float: left;
+            color: #999;
+        }
+
+    </style>
+
+{% endblock %}
+ {% block breadcrumb %}
+     <div id="kt_toolbar_container" class="container-xxl d-flex flex-stack flex-wrap">
+         <!--begin::Page title-->
+         <div class="page-title d-flex flex-column me-3">
+             <!--begin::Title-->
+             <h1 class="d-flex text-white fw-bolder my-1 fs-3">Espace CHATT</h1>
+             <!--end::Title-->
+             <!--begin::Breadcrumb-->
+             <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                 <!--begin::Item-->
+                 <li class="breadcrumb-item text-white opacity-75">
+                     <a href="{{ path('home') }}" class="text-white text-hover-primary">Home</a>
+                 </li>
+                 <!--end::Item-->
+                 <!--begin::Item-->
+
+                 <li class="breadcrumb-item">
+                     <span class="bullet bg-white opacity-75 w-5px h-2px"></span>
+                 </li>
+                 <!--end::Item-->
+                 <!--begin::Item-->
+                 <li class="breadcrumb-item text-white opacity-75">Liste des messages</li>
+                 <!--end::Item-->
+             </ul>
+         </div>
+
+     </div>
+ {% endblock %}
+{% block body %}
+    <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
+        <div class="content flex-row-fluid" id="kt_content">
+            <div class="card">
+                <div class="text-center mb-12" style="margin: 15px !important;">
+                    <a href="{{ path('message_new_message') }}" data-bs-toggle="modal" data-bs-target="#kt_modal_show_users"   class="btn btn-primary" style="float: right" >
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                        <span class="svg-icon svg-icon-2" title="Crée un nouveau message">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2" rx="1" transform="rotate(-90 11.364 20.364)" fill="black"></rect>
+                                    <rect x="4.36396" y="11.364" width="16" height="2" rx="1" fill="black"></rect>
+                                </svg>
+                            </span>
+                        <!--end::Svg Icon-->
+                    </a>
+                    <h5 class="fs-2hx text-dark" style="text-align: center!important;margin-top: 20px; text-transform: uppercase">Liste des vos messages :</h5>
+                </div>
+
+                <div class="card-body pt-0" id="users">
+                    {% for message in messages %}
+                    <div class="container">
+                        <span class="time-left">{{ message.sender?message.sender.firstName:'' }} {{ message.sender?message.sender.lastName:'' }}</span>
+                        <p  style="margin-left:150px">{{ message.content }}</p>
+                        <span class="time-left">{{ message.createdAt|date('d-m-Y') }}</span>
+                        <a class="time-right"><i class="fa fa-edit" title="Répondre" data-bs-toggle="modal" data-bs-target="#kt_modal_show_user" href="{{ path('message_new', {'id': message.sender.id}) }}"></i> </a>
+                    </div>
+                    {% endfor %}
+
+                    {% for message in messages1 %}
+                        <div class="container">
+                            <span class="time-left">{{ message.author?message.author.firstName:'' }} {{ message.sender?message.sender.lastName:'' }}</span>
+                            <p  style="margin-left:150px">{{ message.content }}</p>
+                            <span class="time-left">{{ message.createdAt|date('d-m-Y') }}</span>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="kt_modal_show_user" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal dialog-->
+            <div class="modal-dialog modal-dialog-centered mw-650px">
+                <!--begin::Modal content-->
+                <div class="modal-content">
+                    <!--begin::Modal header-->
+                    <div class="modal-header" id="kt_modal_add_user_header">
+                        <!--begin::Modal title-->
+                        <h2 class="fw-bolder">Utlisateur</h2>
+                        <!--end::Modal title-->
+                        <!--begin::Close-->
+                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                            <span class="svg-icon svg-icon-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                                        </svg>
+                                    </span>
+                            <!--end::Svg Icon-->
+                        </div>
+                        <!--end::Close-->
+                    </div>
+
+                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+
+                    </div>
+                    <!--end::Modal body-->
+                </div>
+                <!--end::Modal content-->
+            </div>
+            <!--end::Modal dialog-->
+        </div>
+        <div class="modal fade" id="kt_modal_show_users" tabindex="-1" aria-hidden="true">
+            <!--begin::Modal dialog-->
+            <div class="modal-dialog modal-dialog-centered mw-650px">
+                <!--begin::Modal content-->
+                <div class="modal-content">
+                    <!--begin::Modal header-->
+                    <div class="modal-header" id="kt_modal_add_user_header">
+                        <!--begin::Modal title-->
+                        <h2 class="fw-bolder">Utlisateur</h2>
+                        <!--end::Modal title-->
+                        <!--begin::Close-->
+                        <div class="btn btn-icon btn-sm btn-active-icon-primary" data-kt-users-modal-action="close">
+                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                            <span class="svg-icon svg-icon-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                            <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="black" />
+                                        </svg>
+                                    </span>
+                            <!--end::Svg Icon-->
+                        </div>
+                        <!--end::Close-->
+                    </div>
+
+                    <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+
+                    </div>
+                    <!--end::Modal body-->
+                </div>
+                <!--end::Modal content-->
+            </div>
+            <!--end::Modal dialog-->
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="showPDFModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+            </div>
+        </div>
+    </div>
+    <!--begin::Modal - Add task-->
+
+    <!--end::Modal - Add task-->
+{% endblock %}
+{% block javascripts %}
+    <script>
+        $(document).ready(function () {
+
+            $("#kt_modal_show_user").on("show.bs.modal", function (e) {
+
+                var link = $(e.relatedTarget);
+                var path = $(this).find(".modal-content").load(link.attr('href'));
+            });
+            $("#kt_modal_show_users").on("show.bs.modal", function (e) {
+
+                var link = $(e.relatedTarget);
+                var path = $(this).find(".modal-content").load(link.attr('href'));
+            });
+        });
+    </script>
+{% endblock %}
